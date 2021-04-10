@@ -47,6 +47,17 @@ class App extends Component {
     });
   };
 
+  deleteHandler = (id) => {
+    /** ID'ye göre istenilen elemanı kaldır */
+    const changedTodoList = this.state.todos.filter((el) => {
+      return el.id !== id;
+    });
+
+    this.setState({
+      todos: changedTodoList,
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -57,7 +68,10 @@ class App extends Component {
         />
         {this.state.todos.length > 0 && (
           <div className="list">
-            <TodoList todos={this.state.todos} />
+            <TodoList
+              todos={this.state.todos}
+              deleteItem={this.deleteHandler}
+            />
           </div>
         )}
       </div>
